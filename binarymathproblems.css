@@ -1,0 +1,27 @@
+.problems {
+  display: flex;
+  border: 1px solid black;
+}
+
+.problem {
+  height: 100px;
+  text-align: right;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.problem input {
+  width: 70px;
+  font: 16px Courier, mono-space; 
+  text-align: right;
+}
+
+.math {
+  font: 16px Courier, mono-space; 
+  border-bottom: 1px solid black;
+  display: inline-block;
+  margin: 0;
+}
+

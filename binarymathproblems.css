@@ -1,6 +1,6 @@
 .problems {
   display: flex;
-  border: 1px solid black;
+  flex-wrap: wrap;
 }
 
 .problem {
@@ -21,7 +21,6 @@
 .math {
   font: 16px Courier, mono-space; 
   border-bottom: 1px solid black;
-  display: inline-block;
   margin: 0;
 }
 
@@ -43,4 +42,9 @@
 
 .incorrect {
   background-color: IndianRed;
+}
+
+.problem-count input {
+  width: 30px;
+  text-align: right;
 }

@@ -38,7 +38,7 @@ $(document).ready(function() {
 
   var newProblems = function() {
     $('.problems').html('');
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < +$('.problem-count input').val(); i++) {
       createProblem();
     }
     $('.problem input').on('blur', checkAnswer);

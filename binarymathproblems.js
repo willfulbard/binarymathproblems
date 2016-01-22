@@ -1,11 +1,21 @@
 $(document).ready(function() {
   var operators = ['+', '-', 'x'];
+  var operations = {};
+  operations['+'] = function(number1, number2) {
+    return number1 + number2;
+  }
+  operations['-'] = function(number1, number2) {
+    return number1 - number2;
+  }
+  operations['x'] = function(number1, number2) {
+    return number1 * number2;
+  }
   var createProblem = function() {
     var operator = operators[Math.floor(Math.random() * operators.length)];
-    var places = 5;
-    var numberMax = Math.pow(2, places + 1);
-    var number1 = Math.floor(Math.random() * numberMax);
-    var number2 = Math.floor(Math.random() * numberMax);
+    var places = 2;
+    var numberMax = Math.pow(2, places) - 1;
+    var number1 = Math.floor(Math.random() * numberMax) + 1;
+    var number2 = Math.floor(Math.random() * numberMax) + 1;
     var longestNumber = Math.max(number1.toString(2).length, number2.toString(2).length);
     //Make it easy so that we dont get negatives or fractions
     if ((operator === '-') && number1 < number2) {
@@ -21,6 +31,7 @@ $(document).ready(function() {
     html +=       String(Array(places+3).join(" ")+number2.toString(2)).slice((longestNumber+1)*-1)+'<br />';
     html +=      '</pre>';
     html +=      '<input class="answer" />';
+    html +=      '<div class="correct"></div>';
     html +=    '</div>';
     $('.problems').append(html);
   };
@@ -30,7 +41,28 @@ $(document).ready(function() {
     for (var i = 0; i < 10; i++) {
       createProblem();
     }
+    $('.problem input').on('blur', checkAnswer);
   };
+
+  var checkAnswer = function() {
+    var problem = $(this).closest('.problem');
+    var answer = problem.find('.answer').val();
+    if (answer === '') {
+      problem.find('.correct').text("");
+      return;
+    }
+    var number1 = problem.data('number1'); 
+    var number2 = problem.data('number2'); 
+    var operator = problem.data('operator'); 
+    var result = '';
+    if (operations[operator](number1, number2) === parseInt(answer, 2)) {
+      problem.find('.correct').text("You are correct!");
+    } else {
+      problem.find('.correct').text("Try again :-(");
+    }
+  }
+
+
   newProblems();
 
 });

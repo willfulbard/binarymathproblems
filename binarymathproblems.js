@@ -31,7 +31,7 @@ $(document).ready(function() {
     html +=       String(Array(places+3).join(" ")+number2.toString(2)).slice((longestNumber+1)*-1)+'<br />';
     html +=      '</pre>';
     html +=      '<input class="answer" />';
-    html +=      '<div class="correct"></div>';
+    html +=      '<div class="correctStatement"></div>';
     html +=    '</div>';
     $('.problems').append(html);
   };
@@ -42,13 +42,16 @@ $(document).ready(function() {
       createProblem();
     }
     $('.problem input').on('blur', checkAnswer);
+    $('.problem').find('.correct').hide();
   };
 
   var checkAnswer = function() {
     var problem = $(this).closest('.problem');
     var answer = problem.find('.answer').val();
     if (answer === '') {
-      problem.find('.correct').text("");
+      problem.find('.correctStatement').hide();
+      problem.removeClass('incorrect');
+      problem.removeClass('correct');
       return;
     }
     var number1 = problem.data('number1'); 
@@ -56,9 +59,15 @@ $(document).ready(function() {
     var operator = problem.data('operator'); 
     var result = '';
     if (operations[operator](number1, number2) === parseInt(answer, 2)) {
-      problem.find('.correct').text("You are correct!");
+      problem.find('.correctStatement').html('Correct!');
+      problem.find('.correctStatement').slideDown('slow');
+      problem.removeClass('incorrect');
+      problem.addClass('correct');
     } else {
-      problem.find('.correct').text("Try again :-(");
+      problem.find('.correctStatement').html('Try again :-(');
+      problem.find('.correctStatement').slideDown('slow');
+      problem.addClass('incorrect');
+      problem.removeClass('correct');
     }
   }
 

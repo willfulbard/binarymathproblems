@@ -25,3 +25,22 @@
   margin: 0;
 }
 
+.correctStatement {
+  margin-top: 10px;
+  font-size: 14pt ;
+  font-weight: bold;
+  display: none;
+  text-align: center;
+}
+
+.correctStatement img {
+  vertical-align: -20%;
+}
+
+.correct {
+  background-color: LightGreen;
+}
+
+.incorrect {
+  background-color: IndianRed;
+}

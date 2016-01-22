@@ -1,4 +1,5 @@
 .problems {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -32,10 +33,6 @@
   text-align: center;
 }
 
-.correctStatement img {
-  vertical-align: -20%;
-}
-
 .correct {
   background-color: LightGreen;
 }
@@ -44,7 +41,7 @@
   background-color: IndianRed;
 }
 
-.problem-count input {
+.options input {
   width: 30px;
   text-align: right;
 }

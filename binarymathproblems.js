@@ -12,7 +12,7 @@ $(document).ready(function() {
   }
   var createProblem = function() {
     var operator = operators[Math.floor(Math.random() * operators.length)];
-    var places = 2;
+    var places = +$('.problem-places input').val();
     var numberMax = Math.pow(2, places) - 1;
     var number1 = Math.floor(Math.random() * numberMax) + 1;
     var number2 = Math.floor(Math.random() * numberMax) + 1;
@@ -71,6 +71,9 @@ $(document).ready(function() {
     }
   }
 
+  $('.show-more').on('click', function () {
+    newProblems();
+  });
 
   newProblems();
 

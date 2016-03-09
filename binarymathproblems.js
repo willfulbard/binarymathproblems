@@ -50,8 +50,7 @@ $(document).ready(function() {
     var answer = problem.find('.answer').val();
     if (answer === '') {
       problem.find('.correctStatement').hide();
-      problem.removeClass('incorrect');
-      problem.removeClass('correct');
+      problem.removeClass('incorrect').removeClass('correct');
       return;
     }
     var number1 = problem.data('number1'); 
@@ -59,15 +58,11 @@ $(document).ready(function() {
     var operator = problem.data('operator'); 
     var result = '';
     if (operations[operator](number1, number2) === parseInt(answer, 2)) {
-      problem.find('.correctStatement').html('Correct!');
-      problem.find('.correctStatement').slideDown('slow');
-      problem.removeClass('incorrect');
-      problem.addClass('correct');
+      problem.find('.correctStatement').html('Correct!').slideDown('slow');
+      problem.removeClass('incorrect').addClass('correct');
     } else {
-      problem.find('.correctStatement').html('Try again :-(');
-      problem.find('.correctStatement').slideDown('slow');
-      problem.addClass('incorrect');
-      problem.removeClass('correct');
+      problem.find('.correctStatement').html('Try again :-(').slideDown('slow');
+      problem.addClass('incorrect').removeClass('correct');
     }
   }
 
